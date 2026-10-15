@@ -1,0 +1,62 @@
+USE Sales;
+
+SELECT * FROM vrinda_sales;
+-- 1. Find unique sales channel
+SELECT DISTINCT sales_channel AS channel_name FROM vrinda_sales 
+WHERE sales_channel LIKE "Ama%";
+
+SELECT sales_channel FROM vrinda_sales
+ORDER BY sales_channel ASC
+LIMIT 5;
+
+-- 2. Find matching product categories
+SELECT * FROM vrinda_product;
+-- print unique product 
+SELECT DISTINCT category FROM vrinda_products AS product_category;
+
+SELECT DISTINCT category FROM vrinda_products AS product_category
+WHERE category LIKE "kurta%";
+
+SELECT category FROM vrinda_products
+ORDER BY category DESC
+LIMIT 5;
+
+-- 3. filter and display delivered sales
+SELECT sales_channel FROM vrinda_sales
+WHERE sales_channel LIKE "a%";
+-- Show sale_id,order_id,sales_channel and amount using aliases
+-- Sort amount from highest to lowest
+
+SELECT sale_id AS transation_id,
+	    order_id AS order_ID,
+        sales_channel AS channels,
+        amount AS sale_amount
+FROM vrinda_sales
+ORDER BY amount DESC;        
+
+-- 4. Find unique shipping cities in Utter Pradesh
+-- Display distinct city
+SELECT DISTINCT ship_city FROM vrinda_sales;
+
+-- RENAME ship_city to city name
+SELECT DISTINCT ship_city AS city_name FROM vrinda_sales
+ORDER BY ship_city ASC
+LIMIT 10;
+
+-- 5.Find sales from selected channel
+
+SELECT  order_id AS order_number, sales_channel AS sales_name, amount AS sale_amount FROM vrinda_sales
+WHERE sales_channel LIKE "M%"
+	  AND amount BETWEEN 500 AND 2000
+ORDER BY amount DESC
+LIMIT 10;
+
+
+
+
+
+
+
+
+
+
